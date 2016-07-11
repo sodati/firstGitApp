@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<!--&lt;!&ndash;[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]&ndash;&gt;-->
+<!--&lt;!&ndash;[if gt IE 8]>&lt;!&ndash;> <html lang="en" ng-app="myApp" class="no-js"> &lt;!&ndash;<![endif]&ndash;&gt;-->
+<head xmlns="http://www.w3.org/1999/html">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+    <link href="Styles.css" rel="stylesheet"/>
+
+  <!--<meta charset="utf-8">-->
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+  <!--<title>My AngularJS App</title>-->
+  <!--<meta name="description" content="">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <!--<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">-->
+  <!--<link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">-->
+  <!--<link rel="stylesheet" href="app.css">-->
+  <!--<script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>-->
+</head>
+<body ng-app="myModule">
+  <!--<ul class="menu">-->
+    <!--<li><a href="#!/view1">view1</a></li>-->
+    <!--<li><a href="#!/view2">view2</a></li>-->
+  <!--</ul>-->
+
+  <!--&lt;!&ndash;[if lt IE 7]>-->
+      <!--<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>-->
+  <!--<![endif]&ndash;&gt;-->
+
+  <!--<div ng-view></div>-->
+
+  <!--<div>Angular seed app: v<span app-version></span></div>-->
+
+  <!--&lt;!&ndash; In production use:-->
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>-->
+  <!--&ndash;&gt;-->
+
+  <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+
+  <!--&lt;!&ndash;<script src="view1/view1.js"></script>&ndash;&gt;-->
+  <!--<script src="view2/view2.js"></script>-->
+  <!--<script src="components/version/version.js"></script>-->
+  <!--<script src="components/version/version-directive.js"></script>-->
+  <!--<script src="components/version/interpolate-filter.js"></script>-->
+<div ng-controller="myController" >
+    Rows to display: <input type="number" step="1" min="0" max="5" ng-model="rowList"/>
+
+    User Name: <input type=text" ng-model="message"/>
+Order By :<select ng-model="sortColumn">
+             <option value="name">Name Asc</option>
+             <option value="gender">Gender Asc</option>
+              <option value="dateOfBirth">Date of Birth Asc</option>
+             <option value="-salary">Salary Desc</option>
+
+
+            </select>
+ <table>
+     <thead>
+      <tr>
+        <th> Name</th>
+          <th> Date of Birth</th>
+          <th> Gender</th>
+          <th> Salary(number)</th>
+          <th> Salary(currency</th>
+
+    </tr>
+     </thead>
+<tbody>
+<!--
+<tr ng-repeat="employee in employees | orderBy:sortColumn">
+-->
+<tr ng-repeat="employee in employees | limitTo :rowList">
+
+<td>{{employee.name | uppercase}}</td>
+    <td>{{employee.dateOfBirth | date:"dd/MM/yyyy" }}</td>
+    <td>{{employee.gender | lowercase}}</td>
+    <td>{{employee.salary | number:2}}</td>
+    <td>{{employee.salary | currency}}</td>
+</tr>
+
+</tbody>
+
+
+
+</table>
+
+    <table>
+
+        <thead>
+     <tr>
+       <th>Name</th>
+         <th>Likes</th>
+         <th>DisLikes</th>
+         <th>Like/Dislike</th>
+
+     </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="technology in technologies">
+
+            <td>{{technology.name}}</td>
+            <td>{{technology.likes}}</td>
+            <td>{{technology.dislikes}}</td>
+
+            <td>
+                <input type="button" value="Like" ng-click="incrementLikes(technology)">
+                <input type="button" value="disLike" ng-click="incrementDisLikes(technology)">
+            </td>
+
+        </tr>
+
+        </tbody>
+
+
+
+    </table>
+</div>
+</body>
+</html>
